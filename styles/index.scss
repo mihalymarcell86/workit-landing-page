@@ -1,0 +1,300 @@
+@use "util/global" as *;
+
+@include setup;
+
+// Fonts
+@font-face {
+  font-family: "Fraunces";
+  src: url("../assets/fonts/fraunces/static/Fraunces_144pt-SemiBold.ttf")
+    format(truetype);
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../assets/fonts/manrope/static/Manrope-Regular.ttf")
+    format(truetype);
+}
+
+@supports (font-variation-settings: normal) {
+  @font-face {
+    font-family: "Fraunces";
+    src: url("../assets/fonts/fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf")
+      format("truetype-variations");
+  }
+
+  @font-face {
+    font-family: "Manrope";
+    src: url("../assets/fonts/manrope/Manrope-VariableFont_wght.ttf")
+      format("truetype-variations");
+  }
+}
+
+// Colors
+:root {
+  --clr-header-bg: #{$dark-purple};
+  --clr-header-text: #{$white};
+  --clr-header-link: #{$white};
+  --clr-header-link-active: #{$eucalyptus};
+  --clr-header-underline: #{$eucalyptus};
+  --clr-button-bg: #{$eucalyptus};
+  --clr-button-text: #{$dark-purple};
+  --clr-list-bg: #{$ghost-white};
+  --clr-list-ordinal: #{$dark-purple};
+  --clr-list-ordinal-border: #{$davys-gray};
+  --clr-heading: #{$dark-purple};
+  --clr-list-paragraph: #{$davys-gray};
+  --clr-test-textbox-bg: #{$dark-purple};
+  --clr-test-textbox-text: #{$white};
+  --clr-social-icon: #{$davys-gray};
+  --clr-social-icon-active: #{$dark-purple};
+
+  --curve-height: #{rem(17.71px)};
+}
+
+body,
+button {
+  font-family: "Manrope", sans-serif;
+}
+
+h1,
+h2 {
+  font-family: "Fraunces", serif;
+  font-variation-settings: "opsz" 144;
+}
+
+#curve-def {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+%curve {
+  content: "";
+  display: block;
+  width: 100%;
+  height: var(--curve-height);
+  background-color: inherit;
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--curve-height) * -1);
+  clip-path: url("#curve");
+}
+
+.header {
+  background-color: var(--clr-header-bg);
+  color: var(--clr-header-text);
+  padding: {
+    top: rem(32px);
+    inline: rem(16px);
+    bottom: rem(139px);
+  }
+  position: relative;
+  &::after {
+    @extend %curve;
+    z-index: 1;
+  }
+}
+
+.header-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: rem(66px);
+}
+
+.logo {
+  width: rem(95.762px);
+  height: rem(24.608px);
+}
+
+.logo--header {
+  margin-top: rem(5px);
+}
+
+.header-link {
+  &,
+  &:visited {
+    color: var(--clr-header-link);
+    font-size: rem(16px);
+    font-weight: 700;
+    line-height: div(32px, 16px);
+    letter-spacing: rem(-0.16px);
+    text-decoration-color: var(--clr-header-underline);
+    text-decoration-thickness: rem(3px);
+    text-underline-offset: rem(8px);
+    transition: color 0.2s ease;
+  }
+  &:active,
+  &:hover,
+  &:focus {
+    color: var(--clr-header-link-active);
+    outline: 0;
+  }
+}
+
+.header-title {
+  font-size: rem(50px);
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  margin-bottom: rem(40px);
+  font-variation-settings: "opsz" 144;
+}
+
+.title-underline {
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-color: var(--clr-header-underline);
+  text-decoration-thickness: rem(3px);
+  text-underline-offset: rem(7px);
+}
+
+.button {
+  background-color: var(--clr-button-bg);
+  color: var(--clr-button-text);
+  border: 2px solid var(--clr-button-bg);
+  padding: rem(10px) rem(22.5px);
+  font-size: rem(16px);
+  font-weight: 700;
+  line-height: div(32px, 16px);
+  letter-spacing: rem(-0.16px);
+  display: block;
+  margin: auto;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover,
+  &:active {
+    color: var(--clr-button-bg);
+    background-color: var(--clr-button-text);
+  }
+}
+
+.header-hero {
+  position: absolute;
+  bottom: rem(-103.16px);
+  left: 50%;
+  translate: -50%;
+  width: rem(320px);
+  height: rem(184px);
+  z-index: 2;
+}
+
+.main-list-section {
+  background-color: var(--clr-list-bg);
+  padding: {
+    top: rem(173px);
+    inline: rem(16px);
+    bottom: rem(54px);
+  }
+  position: relative;
+  &:after {
+    @extend %curve;
+  }
+}
+
+.main-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: rem(40px);
+  text-align: center;
+}
+
+.list-ordinal {
+  font-size: rem(20px);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  line-height: div(36px, 20px);
+  font-variation-settings: "opsz" 144;
+  color: var(--clr-list-ordinal);
+  border: 1px solid var(--clr-list-ordinal-border);
+  width: rem(48px);
+  height: rem(46px);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  margin: 0 auto rem(24px);
+}
+
+.list-heading {
+  font-size: rem(28px);
+  font-weight: 600;
+  line-height: div(36px, 28px);
+  color: var(--clr-heading);
+  margin-bottom: rem(16px);
+}
+
+.list-paragraph {
+  font-size: rem(16px);
+  font-weight: 400;
+  line-height: div(28px, 16px);
+  color: var(--clr-list-paragraph);
+}
+
+.main-test {
+  padding: {
+    top: rem(118px);
+    inline: rem(16px);
+  }
+  margin-bottom: rem(21px);
+}
+
+.test-portrait {
+  width: rem(281px);
+  height: rem(281px);
+  margin: 0 auto;
+  display: block;
+}
+
+.test-textbox {
+  background-color: var(--clr-test-textbox-bg);
+  color: var(--clr-test-textbox-text);
+  padding: rem(32px) rem(31px);
+  position: relative;
+  top: rem(-53px);
+  text-align: center;
+}
+
+.textbox-heading {
+  font-size: rem(32px);
+  font-weight: 600;
+  line-height: div(48px, 32px);
+  margin-bottom: rem(16px);
+}
+
+.textbox-paragraph {
+  font-size: rem(16px);
+  font-weight: 400;
+  line-height: div(28px, 16px);
+  margin-bottom: rem(24px);
+}
+
+.footer {
+  width: rem(116px);
+  height: rem(102.60797px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: rem(63.78px);
+}
+
+.footer-social-media {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  a {
+    &,
+    &:visited {
+      color: var(--clr-social-icon);
+    }
+
+    &:hover,
+    &:active {
+      color: var(--clr-social-icon-active);
+    }
+  }
+}
