@@ -51,6 +51,11 @@ img {
   --clr-social-icon-active: hsl(273deg, 85%, 13%);
   --curve-height: 1.106875rem;
 }
+@media (min-width: 768px) {
+  :root {
+    --curve-height: 2.265rem;
+  }
+}
 
 body,
 button {
@@ -83,11 +88,21 @@ h2 {
 
 .header {
   background-color: var(--clr-header-bg);
+  background-image: url("../assets/images/bg-pattern-1.svg"), url("../assets/images/bg-pattern-2.svg");
+  background-position: -500px 71.12px, -500px -500px;
+  background-repeat: no-repeat;
   color: var(--clr-header-text);
   padding-top: 2rem;
   padding-inline: 1rem;
   padding-bottom: 8.6875rem;
   position: relative;
+}
+@media (min-width: 768px) {
+  .header {
+    padding-inline: 2.5rem;
+    padding-bottom: 10.4375rem;
+    background-position: -227.27px 71.12px, top 250px right -93.68px;
+  }
 }
 .header::after {
   z-index: 1;
@@ -98,6 +113,11 @@ h2 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4.125rem;
+}
+@media (min-width: 768px) {
+  .header-banner {
+    margin-bottom: 3.625rem;
+  }
 }
 
 .logo {
@@ -130,8 +150,16 @@ h2 {
   font-weight: 600;
   line-height: 1;
   text-align: center;
+  margin-inline: auto;
   margin-bottom: 2.5rem;
   font-variation-settings: "opsz" 144;
+  max-width: 30.3125rem;
+}
+@media (min-width: 768px) {
+  .header-title {
+    font-size: 3.75rem;
+    margin-bottom: 2.4375rem;
+  }
 }
 
 .title-underline {
@@ -152,13 +180,16 @@ h2 {
   line-height: 2;
   letter-spacing: -0.01rem;
   display: block;
-  margin: auto;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .button:hover, .button:active {
   color: var(--clr-button-bg);
   background-color: var(--clr-button-text);
+}
+
+.button--header {
+  margin: auto;
 }
 
 .header-hero {
@@ -170,6 +201,13 @@ h2 {
   height: 11.5rem;
   z-index: 2;
 }
+@media (min-width: 768px) {
+  .header-hero {
+    width: 32.125rem;
+    height: 18.5rem;
+    bottom: -11.5rem;
+  }
+}
 
 .main-list-section {
   background-color: var(--clr-list-bg);
@@ -178,12 +216,35 @@ h2 {
   padding-bottom: 3.375rem;
   position: relative;
 }
+@media (min-width: 768px) {
+  .main-list-section {
+    padding-top: 15rem;
+    padding-inline: 6.125rem;
+    padding-bottom: 4.218125rem;
+  }
+}
+
 .main-list {
   list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  display: grid;
   text-align: center;
+}
+@media (min-width: 768px) {
+  .main-list {
+    grid-template-columns: min-content 1fr;
+    column-gap: 2rem;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+.list-text:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+@media (min-width: 768px) {
+  .list-text:not(:last-child) {
+    margin-bottom: 3rem;
+  }
 }
 
 .list-ordinal {
@@ -221,6 +282,13 @@ h2 {
   padding-top: 7.375rem;
   padding-inline: 1rem;
   margin-bottom: 1.3125rem;
+  margin-bottom: -3.125rem;
+}
+@media (min-width: 768px) {
+  .main-test {
+    padding-top: 8.531875rem;
+    padding-inline: 2.5rem;
+  }
 }
 
 .test-portrait {
@@ -228,6 +296,11 @@ h2 {
   height: 17.5625rem;
   margin: 0 auto;
   display: block;
+}
+@media (min-width: 768px) {
+  .test-portrait {
+    margin: 0;
+  }
 }
 
 .test-textbox {
@@ -238,6 +311,21 @@ h2 {
   top: -3.3125rem;
   text-align: center;
 }
+@media (min-width: 768px) {
+  .test-textbox {
+    max-width: 32.125rem;
+    top: -8.125rem;
+    margin-left: auto;
+    padding: 3rem 3.5rem 3.5rem;
+    text-align: left;
+  }
+  .test-textbox::after {
+    content: url("../assets/images/bg-pattern-3.svg");
+    position: absolute;
+    right: 0.793125rem;
+    bottom: -6.60875rem;
+  }
+}
 
 .textbox-heading {
   font-size: 2rem;
@@ -245,12 +333,28 @@ h2 {
   line-height: 1.5;
   margin-bottom: 1rem;
 }
+@media (min-width: 768px) {
+  .textbox-heading {
+    font-size: 3rem;
+    line-height: 1.1666666667;
+    margin-bottom: 1.5rem;
+  }
+}
 
 .textbox-paragraph {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.75;
   margin-bottom: 1.5rem;
+}
+
+.button--textbox {
+  margin: auto;
+}
+@media (min-width: 768px) {
+  .button--textbox {
+    margin: 0;
+  }
 }
 
 .footer {
@@ -262,6 +366,11 @@ h2 {
   align-items: center;
   margin: 0 auto;
   margin-bottom: 3.98625rem;
+}
+@media (min-width: 768px) {
+  .footer {
+    margin-bottom: 7.5825rem;
+  }
 }
 
 .footer-social-media {
