@@ -53,6 +53,9 @@
     --curve-height: #{rem(36.24px)};
     //fluid
   }
+  @media (min-width: $w-desktop) {
+    --curve-height: #{rem(68px)};
+  }
 }
 
 body,
@@ -106,6 +109,14 @@ h2 {
     background-position: -227.27px 71.12px, top 250px right -93.68px;
     //fluid
   }
+  @media (min-width: $w-desktop) {
+    padding: {
+      top: rem(56px);
+      inline: rem(165px);
+      bottom: rem(258px);
+    }
+    background-position: -138.27px 116.12px, top 314.07px right -48.04px;
+  }
   position: relative;
   &::after {
     @extend %curve;
@@ -131,6 +142,9 @@ h2 {
 
 .logo--header {
   margin-top: rem(5px);
+  @media (min-width: $w-desktop) {
+    margin-top: rem(1.78px);
+  }
 }
 
 .header-link {
@@ -145,6 +159,12 @@ h2 {
     text-decoration-thickness: rem(3px);
     text-underline-offset: rem(8px);
     transition: color 0.2s ease;
+    @media (min-width: $w-desktop) {
+      font-size: rem(18px);
+      line-height: div(32px, 18px);
+      letter-spacing: rem(-0.18px);
+      text-underline-offset: rem(10px);
+    }
   }
   &:active,
   &:hover,
@@ -170,6 +190,11 @@ h2 {
     margin-bottom: rem(39px);
     //fluid
   }
+  @media (min-width: $w-desktop) {
+    font-size: rem(80px);
+    margin-bottom: rem(37px);
+    max-width: rem(490px);
+  }
 }
 
 .title-underline {
@@ -178,6 +203,9 @@ h2 {
   text-decoration-color: var(--clr-header-underline);
   text-decoration-thickness: rem(3px);
   text-underline-offset: rem(7px);
+  @media (min-width: $w-desktop) {
+    text-underline-offset: rem(11px);
+  }
 }
 
 .button {
@@ -192,6 +220,12 @@ h2 {
   display: block;
   cursor: pointer;
   transition: all 0.2s ease;
+  @media (min-width: $w-desktop) {
+    padding: rem(13px) rem(32px);
+    font-size: rem(18px);
+    line-height: div(32px, 18px);
+    letter-spacing: rem(-0.18px);
+  }
   &:hover,
   &:active {
     color: var(--clr-button-bg);
@@ -217,6 +251,11 @@ h2 {
     bottom: rem(-184px);
     //fluid
   }
+  @media (min-width: $w-desktop) {
+    width: rem(767px);
+    height: rem(441px);
+    bottom: rem(-233px);
+  }
 }
 
 .main-list-section {
@@ -237,6 +276,13 @@ h2 {
       bottom: rem(67.49px);
     }
   }
+  @media (min-width: $w-desktop) {
+    padding: {
+      top: rem(323px);
+      inline: rem(163px);
+      bottom: rem(103px);
+    }
+  }
 }
 
 .main-list {
@@ -249,12 +295,24 @@ h2 {
     align-items: center;
     text-align: left;
   }
+  @media (min-width: $w-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: min-content 1fr;
+    row-gap: rem(56px);
+    column-gap: rem(26px);
+    grid-auto-flow: column;
+    text-align: center;
+    align-items: flex-start;
+  }
 }
 
 .list-text:not(:last-child) {
   margin-bottom: rem(40px);
   @media (min-width: $w-tablet) {
     margin-bottom: rem(48px);
+  }
+  @media (min-width: $w-desktop) {
+    margin-bottom: 0;
   }
 }
 
@@ -272,6 +330,13 @@ h2 {
   display: grid;
   place-content: center;
   margin: 0 auto rem(24px);
+  @media (min-width: $w-desktop) {
+    width: rem(56px);
+    height: rem(56px);
+    font-size: rem(24px);
+    line-height: div(40px, 24px);
+    margin-bottom: 0;
+  }
 }
 
 .list-heading {
@@ -280,6 +345,11 @@ h2 {
   line-height: div(36px, 28px);
   color: var(--clr-heading);
   margin-bottom: rem(16px);
+  @media (min-width: $w-desktop) {
+    font-size: rem(32px);
+    line-height: div(40px, 32px);
+    margin-bottom: rem(28px);
+  }
 }
 
 .list-paragraph {
@@ -287,6 +357,10 @@ h2 {
   font-weight: 400;
   line-height: div(28px, 16px);
   color: var(--clr-list-paragraph);
+  @media (min-width: $w-desktop) {
+    font-size: rem(18px);
+    line-height: div(32px, 18px);
+  }
 }
 
 .main-test {
@@ -300,8 +374,15 @@ h2 {
       top: rem(136.51px);
       inline: rem(40px);
     }
+    margin-bottom: rem(-50px);
   }
-  margin-bottom: rem(-50px);
+  @media (min-width: $w-desktop) {
+    padding: {
+      top: rem(178px);
+      inline: rem(164px);
+    }
+    margin-bottom: rem(-184.22px);
+  }
 }
 
 .test-portrait {
@@ -311,6 +392,10 @@ h2 {
   display: block;
   @media (min-width: $w-tablet) {
     margin: 0;
+  }
+  @media (min-width: $w-desktop) {
+    width: rem(477px);
+    height: rem(477px);
   }
 }
 
@@ -332,7 +417,16 @@ h2 {
       position: absolute;
       right: rem(12.69px);
       bottom: rem(-105.74px);
+      @media (min-width: $w-desktop) {
+        right: rem(72.69px);
+        bottom: rem(-61.74px);
+      }
     }
+  }
+  @media (min-width: $w-desktop) {
+    max-width: rem(730px);
+    top: rem(-304px);
+    padding: rem(64px);
   }
 }
 
@@ -346,6 +440,11 @@ h2 {
     line-height: div(56px, 48px);
     margin-bottom: rem(24px);
   }
+  @media (min-width: $w-desktop) {
+    font-size: rem(56px);
+    line-height: div(64px, 56px);
+    margin-bottom: rem(32px);
+  }
 }
 
 .textbox-paragraph {
@@ -353,6 +452,11 @@ h2 {
   font-weight: 400;
   line-height: div(28px, 16px);
   margin-bottom: rem(24px);
+  @media (min-width: $w-desktop) {
+    font-size: rem(18px);
+    line-height: div(32px, 18px);
+    margin-bottom: rem(32px);
+  }
 }
 
 .button--textbox {
@@ -373,6 +477,9 @@ h2 {
   margin-bottom: rem(63.78px);
   @media (min-width: $w-tablet) {
     margin-bottom: rem(121.32px);
+  }
+  @media (min-width: $w-desktop) {
+    margin-bottom: rem(110px);
   }
 }
 
