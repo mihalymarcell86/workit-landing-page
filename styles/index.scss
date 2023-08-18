@@ -411,7 +411,7 @@ h2 {
   max-width: rem(620px);
   margin: auto;
   @media (min-width: $w-tablet) {
-    max-width: lerp_clamp($w-tablet, rem(514px), $w-desktop, rem(730px));
+    max-width: lerp($w-tablet, rem(514px), $w-desktop, rem(730px));
     top: lerp_clamp($w-tablet, rem(-130px), $w-desktop, rem(-304px));
     margin-right: 0;
     padding: {

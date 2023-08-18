@@ -394,7 +394,7 @@ h2 {
 }
 @media (min-width: 768px) {
   .test-textbox {
-    max-width: clamp(32.125rem, 0.3214285714 * 100vw + 16.6964285714rem, 45.625rem);
+    max-width: calc(0.3214285714 * 100vw + 16.6964285714rem);
     top: clamp(-19rem, -0.2589285714 * 100vw + 4.3035714286rem, -8.125rem);
     margin-right: 0;
     padding-top: clamp(3rem, 0.0238095238 * 100vw + 1.8571428571rem, 4rem);
