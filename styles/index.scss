@@ -48,13 +48,9 @@
   --clr-social-icon: #{$davys-gray};
   --clr-social-icon-active: #{$dark-purple};
 
-  --curve-height: #{rem(17.71px)};
+  --curve-height: #{lerp($w-mobile, rem(17.71px), $w-tablet, rem(36.24px))};
   @media (min-width: $w-tablet) {
-    --curve-height: #{rem(36.24px)};
-    //fluid
-  }
-  @media (min-width: $w-desktop) {
-    --curve-height: #{rem(68px)};
+    --curve-height: #{lerp_min($w-tablet, rem(36.24px), $w-desktop, rem(68px))};
   }
 }
 
@@ -88,34 +84,32 @@ h2 {
 }
 
 .header {
-  background: {
-    color: var(--clr-header-bg);
-    image: url("../assets/images/bg-pattern-1.svg"),
-      url("../assets/images/bg-pattern-2.svg");
-    position: -500px 71.12px, -500px -500px; //TODO - match speed
-    repeat: no-repeat;
-  }
+  background-color: var(--clr-header-bg);
   color: var(--clr-header-text);
   padding: {
     top: rem(32px);
-    inline: rem(16px);
-    bottom: rem(139px);
+    inline: lerp_max($w-mobile, rem(16px), $w-tablet, rem(40px));
+    bottom: lerp_max($w-mobile, rem(139px), $w-tablet, rem(167px));
   }
+
+  @media (min-width: $bp-list) {
+    background: {
+      image: url("../assets/images/bg-pattern-1.svg"),
+        url("../assets/images/bg-pattern-2.svg");
+      repeat: no-repeat;
+      position: lerp_min($w-tablet, -227.27px, $w-desktop, -138.27px)
+          lerp_min($w-tablet, 71.12px, $w-desktop, 116.12px),
+        top lerp_min($w-tablet, 250px, $w-desktop, 314.07px) right
+          lerp_min($w-tablet, -93.68px, $w-desktop, -48.04px);
+    }
+  }
+
   @media (min-width: $w-tablet) {
     padding: {
-      inline: rem(40px);
-      bottom: rem(167px);
+      top: lerp_min($w-tablet, rem(32px), $w-desktop, rem(56px));
+      inline: lerp_min($w-tablet, rem(40px), $w-desktop, rem(165px));
+      bottom: lerp_min($w-tablet, rem(167px), $w-desktop, rem(258px));
     }
-    background-position: -227.27px 71.12px, top 250px right -93.68px;
-    //fluid
-  }
-  @media (min-width: $w-desktop) {
-    padding: {
-      top: rem(56px);
-      inline: rem(165px);
-      bottom: rem(258px);
-    }
-    background-position: -138.27px 116.12px, top 314.07px right -48.04px;
   }
   position: relative;
   &::after {
@@ -128,11 +122,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: rem(66px);
-  @media (min-width: $w-tablet) {
-    margin-bottom: rem(58px);
-    //fluid
-  }
+  margin-bottom: lerp_clamp($w-mobile, rem(66px), $w-tablet, rem(58px));
 }
 
 .logo {
@@ -142,8 +132,8 @@ h2 {
 
 .logo--header {
   margin-top: rem(5px);
-  @media (min-width: $w-desktop) {
-    margin-top: rem(1.78px);
+  @media (min-width: $w-tablet) {
+    margin-top: lerp_clamp($w-tablet, rem(5px), $w-desktop, rem(1.78px));
   }
 }
 
@@ -153,17 +143,26 @@ h2 {
     color: var(--clr-header-link);
     font-size: rem(16px);
     font-weight: 700;
-    line-height: div(32px, 16px);
+    line-height: rem(32px);
     letter-spacing: rem(-0.16px);
     text-decoration-color: var(--clr-header-underline);
     text-decoration-thickness: rem(3px);
     text-underline-offset: rem(8px);
     transition: color 0.2s ease;
-    @media (min-width: $w-desktop) {
-      font-size: rem(18px);
-      line-height: div(32px, 18px);
-      letter-spacing: rem(-0.18px);
-      text-underline-offset: rem(10px);
+    @media (min-width: $w-tablet) {
+      font-size: lerp_clamp($w-tablet, rem(16px), $w-desktop, rem(18px));
+      letter-spacing: lerp_clamp(
+        $w-tablet,
+        rem(-0.16px),
+        $w-desktop,
+        rem(-0.18px)
+      );
+      text-underline-offset: lerp_clamp(
+        $w-tablet,
+        rem(8px),
+        $w-desktop,
+        rem(10px)
+      );
     }
   }
   &:active,
@@ -175,7 +174,7 @@ h2 {
 }
 
 .header-title {
-  font-size: rem(50px);
+  font-size: lerp_clamp($w-mobile, rem(50px), $w-tablet, rem(60px));
   font-weight: 600;
   line-height: 1;
   text-align: center;
@@ -186,14 +185,9 @@ h2 {
   font-variation-settings: "opsz" 144;
   max-width: rem(485px);
   @media (min-width: $w-tablet) {
-    font-size: rem(60px);
-    margin-bottom: rem(39px);
-    //fluid
-  }
-  @media (min-width: $w-desktop) {
-    font-size: rem(80px);
-    margin-bottom: rem(37px);
-    max-width: rem(490px);
+    font-size: lerp_clamp($w-tablet, rem(60px), $w-desktop, rem(80px));
+    margin-bottom: lerp_clamp($w-tablet, rem(39px), $w-desktop, rem(37px));
+    max-width: lerp_clamp($w-tablet, rem(485px), $w-desktop, rem(490px));
   }
 }
 
@@ -203,8 +197,13 @@ h2 {
   text-decoration-color: var(--clr-header-underline);
   text-decoration-thickness: rem(3px);
   text-underline-offset: rem(7px);
-  @media (min-width: $w-desktop) {
-    text-underline-offset: rem(11px);
+  @media (min-width: $w-tablet) {
+    text-underline-offset: lerp_clamp(
+      $w-tablet,
+      rem(7px),
+      $w-desktop,
+      rem(11px)
+    );
   }
 }
 
@@ -215,16 +214,21 @@ h2 {
   padding: rem(10px) rem(22.5px);
   font-size: rem(16px);
   font-weight: 700;
-  line-height: div(32px, 16px);
+  line-height: rem(32px);
   letter-spacing: rem(-0.16px);
   display: block;
   cursor: pointer;
   transition: all 0.2s ease;
-  @media (min-width: $w-desktop) {
-    padding: rem(13px) rem(32px);
-    font-size: rem(18px);
-    line-height: div(32px, 18px);
-    letter-spacing: rem(-0.18px);
+  @media (min-width: $w-tablet) {
+    padding: lerp_clamp($w-tablet, rem(10px), $w-desktop, rem(13px))
+      lerp_clamp($w-tablet, rem(22.5px), $w-desktop, rem(32px));
+    font-size: lerp_clamp($w-tablet, rem(16px), $w-desktop, rem(18px));
+    letter-spacing: lerp_clamp(
+      $w-tablet,
+      rem(-0.16px),
+      $w-desktop,
+      rem(-0.18px)
+    );
   }
   &:hover,
   &:active {
@@ -239,48 +243,42 @@ h2 {
 
 .header-hero {
   position: absolute;
-  bottom: rem(-103.16px);
+  bottom: lerp_clamp($w-mobile, rem(-103.16px), $w-tablet, rem(-184px));
   left: 50%;
   translate: -50%;
-  width: rem(320px);
-  height: rem(184px);
+  width: lerp_clamp($w-mobile, rem(320px), $w-tablet, rem(514px));
+  height: lerp_clamp($w-mobile, rem(184px), $w-tablet, rem(296px));
   z-index: 2;
   @media (min-width: $w-tablet) {
-    width: rem(514px);
-    height: rem(296px);
-    bottom: rem(-184px);
-    //fluid
-  }
-  @media (min-width: $w-desktop) {
-    width: rem(767px);
-    height: rem(441px);
-    bottom: rem(-233px);
+    width: lerp_clamp($w-tablet, rem(514px), $w-desktop, rem(767px));
+    height: lerp_clamp($w-tablet, rem(296px), $w-desktop, rem(441px));
+    bottom: lerp_clamp($w-tablet, rem(-184px), $w-desktop, rem(-233px));
   }
 }
 
 .main-list-section {
   background-color: var(--clr-list-bg);
   padding: {
-    top: rem(173px);
     inline: rem(16px);
     bottom: rem(54px);
+    top: lerp_max($w-mobile, rem(173px), $w-tablet, rem(240px));
   }
   position: relative;
   &:after {
     @extend %curve;
   }
-  @media (min-width: $w-tablet) {
+  @media (min-width: $bp-list) {
     padding: {
-      top: rem(240px);
       inline: rem(98px);
-      bottom: rem(67.49px);
+      bottom: lerp_min($w-tablet, rem(67.49px), $w-desktop, rem(103px));
     }
   }
-  @media (min-width: $w-desktop) {
+  @media (min-width: $w-tablet) {
+    padding-top: lerp_min($w-tablet, rem(240px), $w-desktop, rem(323px));
+  }
+  @media (min-width: $bp-list2) {
     padding: {
-      top: rem(323px);
-      inline: rem(163px);
-      bottom: rem(103px);
+      inline: lerp_min($bp-list2, rem(80px), $w-desktop, rem(163px));
     }
   }
 }
@@ -289,13 +287,17 @@ h2 {
   list-style-type: none;
   display: grid;
   text-align: center;
-  @media (min-width: $w-tablet) {
+  max-width: rem(480px);
+  margin: 0 auto;
+  @media (min-width: $bp-list) {
     grid-template-columns: min-content 1fr;
-    column-gap: rem(32px);
+    column-gap: lerp_clamp($w-tablet, rem(32px), $bp-list2, rem(64px));
+    row-gap: lerp_clamp($w-tablet, rem(48px), $bp-list2, rem(56px));
     align-items: center;
     text-align: left;
+    max-width: rem(1000px);
   }
-  @media (min-width: $w-desktop) {
+  @media (min-width: $bp-list2) {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: min-content 1fr;
     row-gap: rem(56px);
@@ -303,15 +305,13 @@ h2 {
     grid-auto-flow: column;
     text-align: center;
     align-items: flex-start;
+    max-width: unset;
   }
 }
 
 .list-text:not(:last-child) {
   margin-bottom: rem(40px);
-  @media (min-width: $w-tablet) {
-    margin-bottom: rem(48px);
-  }
-  @media (min-width: $w-desktop) {
+  @media (min-width: $bp-list) {
     margin-bottom: 0;
   }
 }
@@ -330,11 +330,11 @@ h2 {
   display: grid;
   place-content: center;
   margin: 0 auto rem(24px);
-  @media (min-width: $w-desktop) {
-    width: rem(56px);
-    height: rem(56px);
-    font-size: rem(24px);
-    line-height: div(40px, 24px);
+  @media (min-width: $bp-list) {
+    width: lerp_clamp($w-tablet, rem(48px), $bp-list2, rem(56px));
+    height: lerp_clamp($w-tablet, rem(46px), $bp-list2, rem(56px));
+    font-size: lerp_clamp($w-tablet, rem(20px), $bp-list2, rem(24px));
+    line-height: lerp_clamp($w-tablet, rem(36px), $bp-list2, rem(40px));
     margin-bottom: 0;
   }
 }
@@ -345,10 +345,10 @@ h2 {
   line-height: div(36px, 28px);
   color: var(--clr-heading);
   margin-bottom: rem(16px);
-  @media (min-width: $w-desktop) {
-    font-size: rem(32px);
-    line-height: div(40px, 32px);
-    margin-bottom: rem(28px);
+  @media (min-width: $bp-list) {
+    font-size: lerp_clamp($w-tablet, rem(28px), $bp-list2, rem(32px));
+    line-height: lerp_clamp($w-tablet, rem(36px), $bp-list2, rem(40px));
+    margin-bottom: lerp_clamp($w-tablet, rem(16px), $bp-list2, rem(28px));
   }
 }
 
@@ -357,9 +357,9 @@ h2 {
   font-weight: 400;
   line-height: div(28px, 16px);
   color: var(--clr-list-paragraph);
-  @media (min-width: $w-desktop) {
-    font-size: rem(18px);
-    line-height: div(32px, 18px);
+  @media (min-width: $bp-list) {
+    font-size: lerp_clamp($w-tablet, rem(16px), $bp-list2, rem(18px));
+    line-height: lerp_clamp($w-tablet, rem(28px), $bp-list2, rem(32px));
   }
 }
 
@@ -369,19 +369,23 @@ h2 {
     inline: rem(16px);
   }
   margin-bottom: rem(21px);
-  @media (min-width: $w-tablet) {
+  @media (min-width: $bp-list) {
     padding: {
       top: rem(136.51px);
       inline: rem(40px);
     }
-    margin-bottom: rem(-50px);
   }
-  @media (min-width: $w-desktop) {
+  @media (min-width: $w-tablet) {
+    margin-bottom: lerp_clamp(
+      $w-tablet,
+      rem(-50px),
+      $w-desktop,
+      rem(-184.22px)
+    );
     padding: {
-      top: rem(178px);
-      inline: rem(164px);
+      top: lerp_clamp($w-tablet, rem(136.51px), $w-desktop, rem(178px));
+      inline: lerp_clamp($w-tablet, rem(40px), $w-desktop, rem(164px));
     }
-    margin-bottom: rem(-184.22px);
   }
 }
 
@@ -392,10 +396,8 @@ h2 {
   display: block;
   @media (min-width: $w-tablet) {
     margin: 0;
-  }
-  @media (min-width: $w-desktop) {
-    width: rem(477px);
-    height: rem(477px);
+    width: lerp_clamp($w-tablet, rem(281px), $w-desktop, rem(477px));
+    height: lerp_clamp($w-tablet, rem(281px), $w-desktop, rem(477px));
   }
 }
 
@@ -406,27 +408,24 @@ h2 {
   position: relative;
   top: rem(-53px);
   text-align: center;
+  max-width: rem(620px);
+  margin: auto;
   @media (min-width: $w-tablet) {
-    max-width: rem(514px);
-    top: rem(-130px);
-    margin-left: auto;
-    padding: rem(48px) rem(56px) rem(56px);
+    max-width: lerp_clamp($w-tablet, rem(514px), $w-desktop, rem(730px));
+    top: lerp_clamp($w-tablet, rem(-130px), $w-desktop, rem(-304px));
+    margin-right: 0;
+    padding: {
+      top: lerp_clamp($w-tablet, rem(48px), $w-desktop, rem(64px));
+      inline: lerp_clamp($w-tablet, rem(56px), $w-desktop, rem(64px));
+      bottom: lerp_clamp($w-tablet, rem(56px), $w-desktop, rem(64px));
+    }
     text-align: left;
     &::after {
       content: url("../assets/images/bg-pattern-3.svg");
       position: absolute;
-      right: rem(12.69px);
-      bottom: rem(-105.74px);
-      @media (min-width: $w-desktop) {
-        right: rem(72.69px);
-        bottom: rem(-61.74px);
-      }
+      right: lerp_clamp($w-tablet, rem(12.69px), $w-desktop, rem(72.69px));
+      bottom: lerp_clamp($w-tablet, rem(-105.74px), $w-desktop, rem(-61.74px));
     }
-  }
-  @media (min-width: $w-desktop) {
-    max-width: rem(730px);
-    top: rem(-304px);
-    padding: rem(64px);
   }
 }
 
@@ -436,14 +435,9 @@ h2 {
   line-height: div(48px, 32px);
   margin-bottom: rem(16px);
   @media (min-width: $w-tablet) {
-    font-size: rem(48px);
-    line-height: div(56px, 48px);
-    margin-bottom: rem(24px);
-  }
-  @media (min-width: $w-desktop) {
-    font-size: rem(56px);
-    line-height: div(64px, 56px);
-    margin-bottom: rem(32px);
+    font-size: lerp_clamp($w-tablet, rem(48px), $w-desktop, rem(56px));
+    line-height: lerp_clamp($w-tablet, rem(56px), $w-desktop, rem(64px));
+    margin-bottom: lerp_clamp($w-tablet, rem(24px), $w-desktop, rem(32px));
   }
 }
 
@@ -452,10 +446,10 @@ h2 {
   font-weight: 400;
   line-height: div(28px, 16px);
   margin-bottom: rem(24px);
-  @media (min-width: $w-desktop) {
-    font-size: rem(18px);
-    line-height: div(32px, 18px);
-    margin-bottom: rem(32px);
+  @media (min-width: $w-tablet) {
+    font-size: lerp_clamp($w-tablet, rem(16px), $w-desktop, rem(18px));
+    line-height: lerp_clamp($w-tablet, rem(28px), $w-desktop, rem(32px));
+    margin-bottom: lerp_clamp($w-tablet, rem(24px), $w-desktop, rem(32px));
   }
 }
 
@@ -476,10 +470,7 @@ h2 {
   margin: 0 auto;
   margin-bottom: rem(63.78px);
   @media (min-width: $w-tablet) {
-    margin-bottom: rem(121.32px);
-  }
-  @media (min-width: $w-desktop) {
-    margin-bottom: rem(110px);
+    margin-bottom: lerp_clamp($w-tablet, rem(121.32px), $w-desktop, rem(110px));
   }
 }
 

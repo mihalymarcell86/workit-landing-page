@@ -1,5 +1,4 @@
 $REM: 16;
-$breakpoint: undefined;
 
 // Colors
 
@@ -14,3 +13,6 @@ $white: hsl(0, 0%, 100%);
 $w-mobile: 375px;
 $w-tablet: 768px;
 $w-desktop: 1440px;
+
+$bp-list: 700px;
+$bp-list2: 1100px;
